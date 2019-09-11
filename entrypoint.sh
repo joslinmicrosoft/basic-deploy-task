@@ -1,8 +1,11 @@
 #!/bin/sh -l
 
-echo "Starting to deploy something"
+echo "Cloning repository"
+curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" --output source.zip
+echo "Cloned repository"
 echo $(ls)
-echo "Done listing"
+unzip source.zip
+echo $(ls)
 
 echo "Hello $1"
 time=$(date)
