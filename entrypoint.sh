@@ -6,9 +6,25 @@ echo "Cloned repository"
 unzip -qq source.zip
 echo "Successfully unzipped repository"
 cd ReactSite-a2226e70d6ce57295d336431ab41a6c91b48f00c
+
+# Build App Folder
 echo "Building app folder"
-oryx build app -o ../staticsitesoutput/app.zip
+oryx build app -o ../staticsitesoutput/app
 echo "Successfully built app folder"
+
+# Build Api Folder
+echo "Building api folder"
+oryx build api -o ../staticsitesoutput/api
+echo "Successfully built api folder"
+
+# Zip Artifacts
+echo "Zipping artifacts"
+cd ../staticsitesoutput/app
+zip -r ../app.zip .
+cd ../api
+zip -r ../api.zip .
+echo "Done zipping artifacts"
+echo $(ls)
 
 echo "Hello $1"
 time=$(date)
