@@ -1,8 +1,7 @@
 #!/bin/sh -l
 
 echo "Cloning repository"
-curl -sS "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" > source.zip
-#curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" --output source.zip
+curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" -L -o source.zip
 echo "Cloned repository"
 echo $(ls)
 unzip source.zip
