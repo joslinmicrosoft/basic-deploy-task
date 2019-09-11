@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 echo "Starting to deploy something"
-ls
+echo $(ls)
 echo "Done listing"
 
 echo "Hello $1"
