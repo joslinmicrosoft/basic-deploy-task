@@ -19,13 +19,10 @@ echo "Successfully built api folder"
 
 # Zip Artifacts
 echo "Zipping artifacts"
-cd ../staticsitesoutput/app
-zip -r ../app.zip .
-cd ../api
-zip -r ../api.zip .
+cd ../staticsitesoutput/app/build
+zip -r ../../app.zip .
+cd ../api/build
+zip -r ../../api.zip .
 echo "Done zipping artifacts"
+cd ../../
 echo $(ls)
-
-echo "Hello $1"
-time=$(date)
-echo ::set-output name=time::$time
