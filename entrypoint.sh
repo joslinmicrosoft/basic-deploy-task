@@ -1,4 +1,7 @@
 #!/bin/sh -l
+echo $(pwd)
+echo $(ls)
+
 
 echo "Describing setup: "
 echo "Application Source Folder: $INPUT_APP-LOCATION"
