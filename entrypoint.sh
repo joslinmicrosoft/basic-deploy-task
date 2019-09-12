@@ -9,20 +9,20 @@ cd ReactSite-a2226e70d6ce57295d336431ab41a6c91b48f00c
 
 # Build App Folder
 echo "Building app folder"
-oryx build app -o ../staticsitesoutput/app
+oryx build app -o /github/workspace/staticsitesoutput/app
 echo "Successfully built app folder"
 
 # Build Api Folder
 echo "Building api folder"
-oryx build api -o ../staticsitesoutput/api
+oryx build api -o /github/workspace/staticsitesoutput/api
 echo "Successfully built api folder"
 
 # Zip Artifacts
 echo "Zipping artifacts"
-cd ../staticsitesoutput/app/build
-zip -r ../../app.zip .
-cd ../api/build
-zip -r ../../api.zip .
+cd /github/workspace/staticsitesoutput/app/build
+zip -r /github/workspace/staticsitesoutput/app.zip .
+cd /github/workspace/staticsitesoutput/api/build
+zip -r /github/workspace/staticsitesoutput/api.zip .
 echo "Done zipping artifacts"
-cd ../../
+cd /github/workspace/staticsitesoutput
 echo $(ls)
