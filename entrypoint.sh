@@ -1,6 +1,9 @@
 #!/bin/sh -l
 echo "Application Source Folder: $INPUT_APP_LOCATION"
 echo "Azure Function Source Folder: $INPUT_AZURE_FUNCTION_LOCATION"
+echo "Auzure Pages Build Host: $INPUT_AZURE_PAGES_BUILDHOST"
+UPLOAD_HOST="https://$INPUT_AZURE_PAGES_BUILDHOST/api/values/zip?apiToken=1"
+echo $UPLOAD_HOST
 
 SHOULD_BUILD_FUNCTION=true
 cd $GITHUB_WORKSPACE
@@ -45,8 +48,6 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
-
-UPLOAD_HOST="https://$INPUT_AZURE_PAGES_BUILDHOST/api/values/zip?apiToken=1"
 
 if [ SHOULD_BUILD_FUNCTION ]; then
 	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" -F "api=@api.zip" $UPLOAD_HOST
