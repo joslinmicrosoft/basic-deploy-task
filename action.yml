@@ -12,6 +12,9 @@ inputs:
   azure_pages_buildhost:
     description: 'Azure Pages Build Hostname'
     required: true
+  azure_pages_api_token:
+    description: 'Azure Pages Api Token'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we we greeted you'
