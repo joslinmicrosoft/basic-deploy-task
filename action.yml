@@ -9,12 +9,12 @@ inputs:
     description: 'Azure Function Location'
     required: false
     default: 'api'
+  azure_pages_buildhost:
+    description: 'Azure Pages Build Hostname'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.app_location }}
-    - ${{ inputs.azure_function_location }}
