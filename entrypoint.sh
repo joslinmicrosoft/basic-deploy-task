@@ -16,7 +16,7 @@ echo "event: $GITHUB_EVENT_NAME"
 cd $GITHUB_WORKSPACE
 
 if [ ! -d "$INPUT_APP_LOCATION" ]; then
-    echo "Could not find application source folder: $INPUT_APP_LOCATION"
+    echo -e "\e[33mCould not find application source folder: $INPUT_APP_LOCATION\e[0m"
     exit 1
 fi
 
