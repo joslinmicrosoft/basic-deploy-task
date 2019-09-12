@@ -14,6 +14,7 @@ echo "base: $GITHUB_BASE_REF"
 echo "event: $GITHUB_EVENT_NAME"
 
 cd $GITHUB_WORKSPACE
+echo $(pwd)
 echo $(ls)
 
 cd /github/workspace/
