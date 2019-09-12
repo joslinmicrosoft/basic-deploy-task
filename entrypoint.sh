@@ -1,7 +1,7 @@
 #!/bin/sh -l
 echo "Describing setup: "
-echo "Application Source Folder: $INPUT_APP-LOCATION"
-echo "Azure Function Source Folder: $INPUT_AZURE-FUNCTION-LOCATION"
+echo "Application Source Folder: $INPUT_APP_LOCATION"
+echo "Azure Function Source Folder: $INPUT_AZURE_FUNCTION_LOCATION"
 echo "Repository: $GITHUB_REPOSITORY"
 echo "Ref: $GITHUB_REF"
 echo "sha: $GITHUB_SHA"
@@ -14,11 +14,9 @@ echo "event: $GITHUB_EVENT_NAME"
 
 
 cd $GITHUB_WORKSPACE
-cat $GITHUB_EVENT_PATH
-echo $(ls)
 
-if [[! -d "app" ]]; then
-    echo "Could not find application source folder: app"
+if [! -d "$INPUT_APP_LOCATION" ]; then
+    echo "Could not find application source folder: $INPUT_APP_LOCATION"
     exit
 fi
 

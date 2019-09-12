@@ -1,11 +1,11 @@
 name: 'Azure Pages Build/Deploy'
 description: 'Builds and deploys an Azure Pages compatible repository'
 inputs:
-  app-location:
+  app_location:
     description: 'App Location'
     required: false
     default: 'app'
-  azure-function-location:
+  azure_function_location:
     description: 'Azure Function Location'
     required: false
     default: 'api'
@@ -16,5 +16,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.app-location }}
-    - ${{ inputs.azure-function-location }}
+    - ${{ inputs.app_location }}
+    - ${{ inputs.azure_function_location }}
