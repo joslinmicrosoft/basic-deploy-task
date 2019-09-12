@@ -1,6 +1,9 @@
 #!/bin/sh -l
 echo $(pwd)
 echo $(ls)
+cd ../home
+echo $(pwd)
+echo $(ls)
 
 
 echo "Describing setup: "
