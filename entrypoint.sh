@@ -17,7 +17,7 @@ cd $GITHUB_WORKSPACE
 cat $GITHUB_EVENT_PATH
 echo $(ls)
 
-if [[ -d "app" ]]; then
+if [[! -d "app" ]]; then
     echo "Could not find application source folder: app"
     exit
 fi
