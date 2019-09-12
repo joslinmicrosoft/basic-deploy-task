@@ -50,9 +50,9 @@ echo $(ls)
 echo "Uploading Zips"
 
 if [ SHOULD_BUILD_FUNCTION ]; then
-	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" -F "api=@api.zip" $UPLOAD_HOST
+	curl -F "app=@app.zip" -F "event=@$GITHUB_EVENT_PATH" -F "api=@api.zip" $UPLOAD_HOST
 else
-	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" $UPLOAD_HOST
+	curl -F "app=@app.zip" -F "event=@$GITHUB_EVENT_PATH" $UPLOAD_HOST
 fi
 
 echo "Successfully uploaded zips"
