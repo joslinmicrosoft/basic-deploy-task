@@ -30,9 +30,9 @@ else
 fi;
 
 # Zip App Folder
-echo "Zipping app folder"
-# TODO: going to the build folder here seems wrong
-cd /github/staticsitesoutput/app/build
+echo "Zipping app folder: $INPUT_APP_BUILD_OUTPUT_LOCATION"
+
+cd /github/staticsitesoutput/app/$INPUT_APP_BUILD_OUTPUT_LOCATION
 zip -r -q /github/staticsitesoutput/app.zip .
 echo "Done zipping app folder"
 

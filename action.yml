@@ -1,6 +1,18 @@
 name: 'Azure Pages Build/Deploy'
 description: 'Builds and deploys an Azure Pages compatible repository'
 inputs:
+  azure_pages_buildhost:
+    description: 'Azure Pages Build Hostname'
+    required: true
+    default: ''
+  azure_pages_api_token:
+    description: 'Azure Pages Api Token'
+    required: true
+    default: ''
+  app_build_output_location:
+    description: 'Location of the app build output'
+    required: true
+    default: 'build'
   app_location:
     description: 'App Location'
     required: false
@@ -9,12 +21,6 @@ inputs:
     description: 'Azure Function Location'
     required: false
     default: 'api'
-  azure_pages_buildhost:
-    description: 'Azure Pages Build Hostname'
-    required: true
-  azure_pages_api_token:
-    description: 'Azure Pages Api Token'
-    required: true
 outputs:
   time: # id of output
     description: 'The time we we greeted you'
