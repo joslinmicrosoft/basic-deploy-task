@@ -44,5 +44,5 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
-curl -F "file=@/github/staticsitesoutput/app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
+curl -v -F "file=@/github/staticsitesoutput/app.zip" "https://testuploadfile20190910120552.azurewebsites.net/api/values/zip"
 echo "Successfully uploaded zips"
