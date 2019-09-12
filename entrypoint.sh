@@ -13,6 +13,10 @@ echo "head: $GITHUB_HEAD_REF"
 echo "base: $GITHUB_BASE_REF"
 echo "event: $GITHUB_EVENT_NAME"
 
+cd $GITHUB_WORKFLOW
+echo $(ls)
+
+cd /github/workspace/
 
 echo "Cloning repository"
 curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" -L -o source.zip
