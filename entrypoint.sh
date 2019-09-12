@@ -23,7 +23,8 @@ echo "Successfully built app folder"
 
 # Zip App Folder
 echo "Zipping app folder"
-cd /github/staticsitesoutput/app
+# TODO: going to the build folder here seems wrong
+cd /github/staticsitesoutput/app/build
 zip -r -q /github/staticsitesoutput/app.zip .
 echo "Done zipping app folder"
 
@@ -44,7 +45,6 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
-echo $(ls -l --block-size=M)
 curl --form "file=@app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
 
 echo "Successfully uploaded zips"
