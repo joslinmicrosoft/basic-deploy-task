@@ -3,6 +3,7 @@
 echo "Describing setup: "
 echo "Application Source Folder: $1"
 echo "Azure Function Source Folder: $2"
+echo "Repository: $GITHUB_REPOSITORY"
 
 echo "Cloning repository"
 curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" -L -o source.zip
