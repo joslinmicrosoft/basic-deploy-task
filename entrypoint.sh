@@ -46,12 +46,12 @@ cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
 
-UPLOAD_HOST="https://testuploadfile20190910120552.azurewebsites.net/api/values/zip?apiToken="
+UPLOAD_HOST="https://$INPUT_AZURE_PAGES_BUILDHOST/api/values/zip?apiToken=1"
 
 if [ SHOULD_BUILD_FUNCTION ]; then
-	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" -F "api=@api.zip" UPLOAD_HOST
+	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" -F "api=@api.zip" $UPLOAD_HOST
 else
-	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" UPLOAD_HOST
+	curl -F "app=@app.zip" -F "event=@GITHUB_EVENT_PATH" $UPLOAD_HOST
 fi
 
 echo "Successfully uploaded zips"
