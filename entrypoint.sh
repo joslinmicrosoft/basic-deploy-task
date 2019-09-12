@@ -29,6 +29,7 @@ echo "Done zipping app folder"
 
 # Build and Zip Api Folder
 if [ SHOULD_BUILD_FUNCTION ]; then
+	cd $GITHUB_WORKSPACE
 	echo "Building api folder"
 	oryx build api -o /github/staticsitesoutput/api
 	echo "Successfully built api folder"
@@ -43,4 +44,4 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
-#curl -F "file=@app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
+curl -F "file=@app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
