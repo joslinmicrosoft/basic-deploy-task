@@ -2,7 +2,7 @@
 echo "Application Source Folder: $INPUT_APP_LOCATION"
 echo "Azure Function Source Folder: $INPUT_AZURE_FUNCTION_LOCATION"
 
-SHOULD_BUILD_FUNCTION = true
+SHOULD_BUILD_FUNCTION=true
 cd $GITHUB_WORKSPACE
 
 if [ ! -d "$INPUT_APP_LOCATION" ]; then
@@ -11,7 +11,7 @@ if [ ! -d "$INPUT_APP_LOCATION" ]; then
 fi
 
 if [ ! -d "$INPUT_AZURE_FUNCTION_LOCATION" ]; then
-	SHOULD_BUILD_FUNCTION = false
+	SHOULD_BUILD_FUNCTION=false
     echo "\e[33mCould not find the azure function source folder: $INPUT_AZURE_FUNCTION_LOCATION (This is safe to ignore if you are not using Azure Functions)\e[0m"
     exit 1
 fi
@@ -43,3 +43,4 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
+#curl -F "file=@app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
