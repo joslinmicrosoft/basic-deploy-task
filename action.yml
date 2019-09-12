@@ -1,10 +1,14 @@
 name: 'Azure Pages Build/Deploy'
 description: 'Builds and deploys an Azure Pages compatible repository'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  app-location:
+    description: 'App Location'
+    required: false
+    default: 'app'
+  azure-function-location:
+    description: 'Azure Function Location'
+    required: false
+    default: 'api'
 outputs:
   time: # id of output
     description: 'The time we we greeted you'
@@ -12,4 +16,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.app-location }}
+    - ${{ inputs.azure-function-location }}
