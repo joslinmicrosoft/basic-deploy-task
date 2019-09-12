@@ -44,6 +44,11 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
-curl -H "Accept: application/xml" -H "Content-Type: application/xml" -X GET https://testuploadfile20190910120552.azurewebsites.net/api/values
-curl --form "file=@app.zip" "https://testuploadfile20190910120552.azurewebsites.net/api/values/zip"
+
+mkdir temp
+cd temp
+echo "something" >> helloworld.txt
+zip -r -q ./app.zip .
+curl --form "file=@app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
+
 echo "Successfully uploaded zips"
