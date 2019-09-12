@@ -1,4 +1,7 @@
 #!/bin/sh -l
+cd /source
+echo $(ls)
+
 echo "Describing setup: "
 echo "Application Source Folder: $INPUT_APP-LOCATION"
 echo "Azure Function Source Folder: $INPUT_AZURE-FUNCTION-LOCATION"
