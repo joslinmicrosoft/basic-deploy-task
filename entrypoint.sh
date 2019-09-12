@@ -1,5 +1,9 @@
 #!/bin/sh -l
 
+echo "Describing setup: "
+echo "Application Source Folder: $1"
+echo "Azure Function Source Folder: $2"
+
 echo "Cloning repository"
 curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" -L -o source.zip
 echo "Cloned repository"
@@ -20,9 +24,9 @@ echo "Successfully built api folder"
 # Zip Artifacts
 echo "Zipping artifacts"
 cd /github/workspace/staticsitesoutput/app/build
-zip -r /github/workspace/staticsitesoutput/app.zip .
+zip -r -q /github/workspace/staticsitesoutput/app.zip .
 cd /github/workspace/staticsitesoutput/api
-zip -r /github/workspace/staticsitesoutput/api.zip .
+zip -r -q /github/workspace/staticsitesoutput/api.zip .
 echo "Done zipping artifacts"
 cd /github/workspace/staticsitesoutput
 echo $(ls)
