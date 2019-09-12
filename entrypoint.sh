@@ -13,7 +13,7 @@ echo "head: $GITHUB_HEAD_REF"
 echo "base: $GITHUB_BASE_REF"
 echo "event: $GITHUB_EVENT_NAME"
 
-cd $GITHUB_WORKFLOW
+cd $GITHUB_WORKSPACE
 echo $(ls)
 
 cd /github/workspace/
