@@ -21,8 +21,9 @@ echo "Successfully built api folder"
 echo "Zipping artifacts"
 cd /github/workspace/staticsitesoutput/app/build
 zip -r /github/workspace/staticsitesoutput/app.zip .
-cd /github/workspace/staticsitesoutput/api/build
+cd /github/workspace/staticsitesoutput/api
 zip -r /github/workspace/staticsitesoutput/api.zip .
 echo "Done zipping artifacts"
 cd /github/workspace/staticsitesoutput
 echo $(ls)
+echo "Uploading Zips"

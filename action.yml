@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Azure Pages Build/Deploy'
+description: 'Builds and deploys an Azure Pages compatible repository'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
