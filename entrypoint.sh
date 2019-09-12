@@ -1,49 +1,45 @@
 #!/bin/sh -l
-echo "Describing setup: "
 echo "Application Source Folder: $INPUT_APP_LOCATION"
 echo "Azure Function Source Folder: $INPUT_AZURE_FUNCTION_LOCATION"
-echo "Repository: $GITHUB_REPOSITORY"
-echo "Ref: $GITHUB_REF"
-echo "sha: $GITHUB_SHA"
-echo "actor: $GITHUB_ACTOR"
-echo "actor: $GITHUB_WORKSPACE"
-echo "workflow: $GITHUB_WORKFLOW"
-echo "head: $GITHUB_HEAD_REF"
-echo "base: $GITHUB_BASE_REF"
-echo "event: $GITHUB_EVENT_NAME"
 
-
+SHOULD_BUILD_FUNCTION = true
 cd $GITHUB_WORKSPACE
 
 if [ ! -d "$INPUT_APP_LOCATION" ]; then
-    echo "\e[33mCould not find application source folder: $INPUT_APP_LOCATION\e[0m"
+    echo "\e[31mCould not find application source folder: $INPUT_APP_LOCATION\e[0m"
     exit 1
 fi
 
-echo "Cloning repository"
-curl "https://github.com/miwebst/ReactSite/archive/a2226e70d6ce57295d336431ab41a6c91b48f00c.zip" -L -o source.zip
-echo "Cloned repository"
-unzip -qq source.zip
-echo "Successfully unzipped repository"
-cd ReactSite-a2226e70d6ce57295d336431ab41a6c91b48f00c
+if [ ! -d "$INPUT_AZURE_FUNCTION_LOCATION" ]; then
+	SHOULD_BUILD_FUNCTION = false
+    echo "\e[33mCould not find the azure function source folder: $INPUT_AZURE_FUNCTION_LOCATION (This is safe to ignore if you are not using Azure Functions)\e[0m"
+    exit 1
+fi
 
 # Build App Folder
 echo "Building app folder"
-oryx build app -o /github/workspace/staticsitesoutput/app
+oryx build app -o /github/staticsitesoutput/app
 echo "Successfully built app folder"
 
-# Build Api Folder
-echo "Building api folder"
-oryx build api -o /github/workspace/staticsitesoutput/api
-echo "Successfully built api folder"
+# Zip App Folder
+echo "Zipping app folder"
+cd /github/staticsitesoutput/app
+zip -r -q /github/staticsitesoutput/app.zip .
+echo "Done zipping app folder"
 
-# Zip Artifacts
-echo "Zipping artifacts"
-cd /github/workspace/staticsitesoutput/app/build
-zip -r -q /github/workspace/staticsitesoutput/app.zip .
-cd /github/workspace/staticsitesoutput/api
-zip -r -q /github/workspace/staticsitesoutput/api.zip .
-echo "Done zipping artifacts"
-cd /github/workspace/staticsitesoutput
+# Build and Zip Api Folder
+if [ SHOULD_BUILD_FUNCTION ]; then
+	echo "Building api folder"
+	oryx build api -o /github/staticsitesoutput/api
+	echo "Successfully built api folder"
+
+	echo "Zipping api folder"
+	cd /github/staticsitesoutput/api
+	zip -r -q /github/staticsitesoutput/api.zip .
+	echo "Done zipping api folder"
+fi
+
+
+cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
