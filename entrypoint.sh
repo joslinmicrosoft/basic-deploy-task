@@ -44,11 +44,6 @@ fi
 cd /github/staticsitesoutput
 echo $(ls)
 echo "Uploading Zips"
-
-mkdir temp
-cd temp
-echo "something" >> helloworld.txt
-zip -r -q ./app.zip .
 curl --form "file=@app.zip" https://testuploadfile20190910120552.azurewebsites.net/api/values/zip
 
 echo "Successfully uploaded zips"
