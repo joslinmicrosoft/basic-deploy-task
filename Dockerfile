@@ -6,5 +6,7 @@ FROM ahmelsayed/oryx:node-build
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
+COPY $GITHUB_WORKSPACE /source
+
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]
