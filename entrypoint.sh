@@ -1,14 +1,15 @@
 #!/bin/sh -l
-echo "Application Source Folder: $INPUT_APP_LOCATION"
+echo "Application Source Folder: $INPUT_APP_SOURCE_LOCATION"
 echo "Azure Function Source Folder: $INPUT_AZURE_FUNCTION_LOCATION"
+echo "Auzure Pages Build Output Location: $INPUT_APP_BUILD_OUTPUT_LOCATION"
 echo "Auzure Pages Build Host: $INPUT_AZURE_PAGES_BUILDHOST"
 UPLOAD_HOST="https://$INPUT_AZURE_PAGES_BUILDHOST/api/values/zip?apiToken=$INPUT_AZURE_PAGES_API_TOKEN"
 
 SHOULD_BUILD_FUNCTION=true
 cd $GITHUB_WORKSPACE
 
-if [ ! -d "$INPUT_APP_LOCATION" ]; then
-    echo "\e[31mCould not find application source folder: $INPUT_APP_LOCATION\e[0m"
+if [ ! -d "$INPUT_APP_SOURCE_LOCATION" ]; then
+    echo "\e[31mCould not find application source folder: $INPUT_APP_SOURCE_LOCATION\e[0m"
     exit 1
 fi
 
@@ -20,10 +21,10 @@ fi
 
 # Build App Folder
 echo "Building app folder"
-oryx build app -o /github/staticsitesoutput/app
+oryx build $INPUT_APP_SOURCE_LOCATION -o /github/staticsitesoutput/app
 
 if [ 0 -eq $? ]; then
-	echo "Successfully built app folder"
+	echo "\e[32mSuccessfully built app folder\e[0m"
 else
 	echo "\e[31mFailed to build application\e[0m"
     exit 1
@@ -34,16 +35,16 @@ echo "Zipping app folder: $INPUT_APP_BUILD_OUTPUT_LOCATION"
 
 cd /github/staticsitesoutput/app/$INPUT_APP_BUILD_OUTPUT_LOCATION
 zip -r -q /github/staticsitesoutput/app.zip .
-echo "Done zipping app folder"
+echo "\e[32mDone zipping app folder\e[0m"
 
 # Build and Zip Api Folder
 if [ SHOULD_BUILD_FUNCTION ]; then
 	cd $GITHUB_WORKSPACE
 	echo "Building api folder"
-	oryx build api -o /github/staticsitesoutput/api
+	oryx build $INPUT_AZURE_FUNCTION_LOCATION -o /github/staticsitesoutput/api
 
 	if [ 0 -eq $? ]; then
-		echo "Successfully built api folder"
+		echo "\e[32mSuccessfully built api folder\e[0m"
 	else
 		echo "\e[31mFailed to build Azure function\e[0m"
 	    exit 1
@@ -52,7 +53,7 @@ if [ SHOULD_BUILD_FUNCTION ]; then
 	echo "Zipping api folder"
 	cd /github/staticsitesoutput/api
 	zip -r -q /github/staticsitesoutput/api.zip .
-	echo "Done zipping api folder"
+	echo "\e[32mDone zipping api folder\e[0m"
 fi
 
 
@@ -66,7 +67,7 @@ else
 fi
 
 if [ 0 -eq $? ]; then
-	echo "Successfully uploaded zips"
+	echo "\e[32mSuccessfully uploaded zips\e[0m"
 else
 	echo "\e[31mFailed to upload zips\e[0m"
     exit 1

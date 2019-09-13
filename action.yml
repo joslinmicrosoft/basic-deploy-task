@@ -13,8 +13,8 @@ inputs:
     description: 'Location of the app build output'
     required: true
     default: 'build'
-  app_location:
-    description: 'App Location'
+  app_source_location:
+    description: 'Location of the source code for the app'
     required: false
     default: 'app'
   azure_function_location:
