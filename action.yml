@@ -9,6 +9,10 @@ inputs:
     description: 'Azure Pages Api Token'
     required: true
     default: ''
+  azure_pages_api_version:
+    description: 'Azure Pages Api Version'
+    required: false
+    default: 'v1'
   app_build_output_location:
     description: 'Location of the app build output'
     required: true
