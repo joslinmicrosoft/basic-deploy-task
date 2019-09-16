@@ -3,7 +3,7 @@ echo "Application Source Folder: $INPUT_APP_SOURCE_LOCATION"
 echo "Azure Function Source Folder: $INPUT_AZURE_FUNCTION_LOCATION"
 echo "Auzure Pages Build Output Location: $INPUT_APP_BUILD_OUTPUT_LOCATION"
 echo "Auzure Pages Build Host: $INPUT_AZURE_PAGES_BUILDHOST"
-UPLOAD_HOST="https://$INPUT_AZURE_PAGES_BUILDHOST/api/values/zip?apiToken=$INPUT_AZURE_PAGES_API_TOKEN"
+UPLOAD_HOST="https://$INPUT_AZURE_PAGES_BUILDHOST/api/upload?apiToken=$INPUT_AZURE_PAGES_API_TOKEN&apiVersion=v1"
 
 SHOULD_BUILD_FUNCTION=true
 cd $GITHUB_WORKSPACE
